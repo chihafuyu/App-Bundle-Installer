@@ -41,20 +41,33 @@ while ($true) {
             Write-Host "======================================================" -ForegroundColor Cyan
             Write-Host "[1] Google Play Store (com.android.vending)"
             Write-Host "[2] Built-in Package Installer (com.google.android.packageinstaller)"
+            Write-Host "[3] Samsung Galaxy Store (com.sec.android.app.samsungapps)"
+            Write-Host "[4] Huawei AppGallery (com.huawei.appmarket)"
+            Write-Host "[5] OPPO/Realme/OnePlus App Market (com.oppo.market)"
+            Write-Host "[6] VIVO V-Appstore (com.vivo.appstore)"
+            Write-Host "[7] Xiaomi/POCO/Redmi GetApps (com.xiaomi.mipicks)"
+            Write-Host "[8] Amazon AppStore (com.amazon.venezia)"
             Write-Host "[B] Back to Previous Menu"
             Write-Host "======================================================" -ForegroundColor Cyan
             Write-Host ""
             
-            $sourceChoice = Read-Host "Select your installer source (1/2/B)"
+            $sourceChoice = Read-Host "Select your installer source (1-8 or B)"
             
-            if ($sourceChoice -eq '1') {
-                $installerSource = "com.android.vending"
-                $currentState = "Step3_Execute"
-            } elseif ($sourceChoice -eq '2') {
-                $installerSource = "com.google.android.packageinstaller"
-                $currentState = "Step3_Execute"
-            } elseif ($sourceChoice -match '^[Bb]$') {
-                $currentState = "Step1_Ready"
+            switch -Regex ($sourceChoice) {
+                '^1$' { $installerSource = "com.android.vending"; $currentState = "Step3_Execute" }
+                '^2$' { $installerSource = "com.google.android.packageinstaller"; $currentState = "Step3_Execute" }
+                '^3$' { $installerSource = "com.sec.android.app.samsungapps"; $currentState = "Step3_Execute" }
+                '^4$' { $installerSource = "com.huawei.appmarket"; $currentState = "Step3_Execute" }
+                '^5$' { $installerSource = "com.oppo.market"; $currentState = "Step3_Execute" }
+                '^6$' { $installerSource = "com.vivo.appstore"; $currentState = "Step3_Execute" }
+                '^7$' { $installerSource = "com.xiaomi.mipicks"; $currentState = "Step3_Execute" }
+                '^8$' { $installerSource = "com.amazon.venezia"; $currentState = "Step3_Execute" }
+                '^[Bb]$' { $currentState = "Step1_Ready" }
+                default {
+                    Write-Host "`n[!] Invalid choice. Please enter a number between 1-8 or B." -ForegroundColor Yellow
+                    Start-Sleep -Seconds 1
+                    # State remains "Step2_Source", loop restarts natively
+                }
             }
         }
         

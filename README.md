@@ -6,6 +6,35 @@ A simple, interactive PowerShell script designed to automate the installation of
 
 * **Seamless Split APK Installation:** Automatically extracts bundles and streams all APK fragments (base, dpi, language, architecture) in one go using `adb install-multiple`.
 * **Fake Installer Source Spoofing:** Tricks the Android Package Manager into thinking the app was downloaded directly from the Google Play Store (`com.android.vending`) or the Built-in Package Installer.
+
+> **💡 OEM Store Spoofing Guide:**
+  If you are using an OEM device (Samsung, OPPO, Vivo, Xiaomi, Realme, etc.), you can easily spoof its native app store. Just copy and paste one of these into the Custom field:
+  
+  * Samsung (Galaxy Store): 
+  ```text
+  com.sec.android.app.samsungapps
+  ```
+  * Huawei (AppGallery):
+  ```text
+  com.huawei.appmarket
+  ```
+  * OPPO/Realme/OnePlus (App Market):
+  ```text
+  com.oppo.market
+  ```
+  * VIVO (V-Appstore):
+  ```text
+  com.vivo.appstore
+  ```
+  * Xiaomi/POCO/Redmi (GetApps):
+  ```text
+  com.xiaomi.mipicks
+  ```
+  * Amazon Fire (Amazon AppStore):
+  ```text
+  com.amazon.venezia
+  ```
+  
 * **Smart OBB Handling:** Automatically detects and pushes OBB data to `/sdcard/Android/obb/` if it's included in the bundle (typically found in `.xapk` files).
 * **Auto ADB Setup:** Don't have ADB installed? The script will detect it and offer to automatically download and configure Android Platform Tools to your Windows system PATH.
 * **Interactive CLI:** A clean, text-based UI with a Global Back feature (just hit `B` to jump back to the previous menu at any time).
